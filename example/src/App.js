@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import ExampleComponent from 'window-resizer'
+import { withWindowResizer } from "window-resizer";
 
-export default class App extends Component {
-  render () {
-    return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
-      </div>
-    )
+class App extends Component {
+  render() {
+    return <h1>Resizer</h1>;
   }
 }
+
+let config = {
+  mobile: 450,
+  desktop: 1200,
+  tablet: 800
+};
+
+export default withWindowResizer(config)(App);

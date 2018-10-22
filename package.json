@@ -19,7 +19,8 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "typecheck": "flow"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -42,7 +43,9 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
+    "flow-bin": "^0.83.0",
     "gh-pages": "^1.2.0",
+    "lodash": "^4.17.11",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
