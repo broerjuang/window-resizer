@@ -8,22 +8,82 @@
 
 ```bash
 npm install --save window-resizer
+
+or
+
+yarn add window-resizer
 ```
 
 ## Usage
 
+## HOC
+
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { withWindowResizer } from "window-resizer";
 
-import MyComponent from 'window-resizer'
-
-class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
+class App extends Component {
+  render() {
+    return <h1>Resizer</h1>;
   }
 }
+
+let config = {
+  mobile: 450,
+  desktop: 1200,
+  tablet: 800
+};
+
+export default withWindowResizer(config)(App);
+```
+
+## Context
+
+```js
+import React, { Component } from "react";
+import { WindowResizerProvider, WindowResizerConsumer } from "window-resizer";
+
+const CONFIG = {
+  mobile: 450,
+  desktop: 1200,
+  tablet: 800
+};
+
+class App extends Component {
+  render() {
+    return (
+      <WindowResizerProvider breakPoint={CONFIG}>
+        <div>
+          <WindowResizerConsumer>
+            {({width, height, screen}) => {
+              <SomeUsage height={height} />
+            }}
+          <WindowResizerConsumer>
+        </div>
+      </WindowResizerProvider>
+    );
+  }
+}
+
+export default App
+```
+
+## Props
+
+```js
+type BreakPoint = {
+  mobile?: number,
+  tabet?: number,
+  desktop?: number
+};
+
+type Screen = "MOBILE" | "TABLET" | "DESKTOP";
+
+type Props = {
+  ...BreakPoint,
+  children: React$Node,
+  throttle?: number
+};
 ```
 
 ## License
